@@ -1,8 +1,9 @@
-import * as React from "react";
+import { VoidFunctionComponent } from "react";
 
 type HeaderProps = {};
 
-export const Header: React.VoidFunctionComponent<HeaderProps> = (props) => {
+export const Header: VoidFunctionComponent<HeaderProps> = (props) => {
+  console.log("hi");
   return (
     <nav
       className="w-screen flex justify-between bg-slate-100 px-4 items-center border-b"
@@ -15,9 +16,17 @@ export const Header: React.VoidFunctionComponent<HeaderProps> = (props) => {
         <p>Draw Editor</p>
       </div>
       <div>
-        <button className="bg-lime-500 hover:bg-lime-700 text-white py-1 px-4 rounded">
+        <div
+          className="bg-lime-500 hover:bg-lime-700 text-white py-1 px-4 rounded"
+          onClick={() => {
+            console.log("Submit");
+          }}
+          onMouseEnter={() => {
+            console.log("Hover");
+          }}
+        >
           Submit
-        </button>
+        </div>
       </div>
     </nav>
   );

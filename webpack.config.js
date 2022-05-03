@@ -1,4 +1,3 @@
-
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -8,6 +7,11 @@ module.exports = {
   devtool: "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
+    alias: {
+      // SUCK: https://github.com/react-dnd/react-dnd/issues/3433
+      "react/jsx-runtime": "react/jsx-runtime.js",
+      "react/jsx-dev-runtime": "react/jsx-dev-runtime.js",
+    },
   },
   module: {
     rules: [

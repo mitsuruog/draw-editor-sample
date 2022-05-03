@@ -1,16 +1,16 @@
-import * as React from "react";
+import { VoidFunctionComponent } from "react";
 
-import { DrawEditor, Header, SideMenu } from ".";
+import { Header, SideMenu, Main } from ".";
 
 type AppProps = {};
 
-export const App: React.VoidFunctionComponent<AppProps> = (props) => {
+export const App: VoidFunctionComponent<AppProps> = (props) => {
   return (
     <main className="fixed inset-0 w-screen h-screen flex flex-col">
       <Header />
       <div className="flex flex-grow">
         <SideMenu />
-        <DrawEditor />
+        <Main />
       </div>
     </main>
   );
