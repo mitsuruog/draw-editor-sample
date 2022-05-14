@@ -1,21 +1,15 @@
 import { VoidFunctionComponent } from "react";
-import { Circle as KonovaCircle, Layer } from "react-konva";
+import { Ellipse as KonovaEllipse, Layer } from "react-konva";
 import composeRefs from "@seznam/compose-react-refs";
 
-import {
-  useAppDispatch,
-  useHover,
-  useSelect,
-  useTransformare,
-  useDrag,
-} from "../../../hooks";
+import { useHover, useSelect, useTransformare, useDrag } from "../../../hooks";
 import { ShapeObject, STROKE_WIDTH } from "../..";
 
-export type CircleProps = ShapeObject & {
-  name: "Circle";
+export type EllipseProps = ShapeObject & {
+  name: "Ellipse";
 };
 
-export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
+export const Ellipse: VoidFunctionComponent<EllipseProps> = (props) => {
   const {
     id,
     x = 0,
@@ -33,7 +27,7 @@ export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
 
   return (
     <Layer>
-      <KonovaCircle
+      <KonovaEllipse
         id={id}
         // @ts-ignore
         ref={composeRefs(shapeRef, hoverRef)}
@@ -41,7 +35,8 @@ export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
         y={y}
         scaleX={scaleX}
         scaleY={scaleY}
-        radius={25}
+        radiusX={50}
+        radiusY={25}
         fill={fillColor}
         stroke={strokeColor}
         strokeWidth={STROKE_WIDTH}
@@ -51,14 +46,7 @@ export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
         onDragEnd={onDragEnd}
         onTransformEnd={onTransformEnd}
       />
-      <Transformer
-        enabledAnchors={[
-          "top-left",
-          "top-right",
-          "bottom-left",
-          "bottom-right",
-        ]}
-      />
+      <Transformer />
     </Layer>
   );
 };

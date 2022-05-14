@@ -19,8 +19,20 @@ const basicShapes: {
     image: "Rectangle.png",
   },
   {
+    name: "RoundedRectangle",
+    type: "shape",
+    displayName: "Rounded Rectangle",
+    image: "RoundedRectangle.png",
+  },
+  {
+    name: "Ellipse",
+    type: "shape",
+    displayName: "Ellipse",
+    image: "Ellipse.png",
+  },
+  {
     name: "Circle",
-    type: "shccircleircleape",
+    type: "shape",
     displayName: "Circle",
     image: "Circle.png",
   },
@@ -29,6 +41,36 @@ const basicShapes: {
     type: "line",
     displayName: "Line",
     image: "Line.png",
+  },
+  {
+    name: "DottedLine",
+    type: "line",
+    displayName: "Dotted Line",
+    image: "DottedLine.png",
+  },
+  {
+    name: "DashedLine",
+    type: "line",
+    displayName: "Dashed Line",
+    image: "DashedLine.png",
+  },
+  {
+    name: "Arrow",
+    type: "line",
+    displayName: "Arrow",
+    image: "Arrow.png",
+  },
+  {
+    name: "DashedArrow",
+    type: "line",
+    displayName: "Dashed Arrow",
+    image: "DashedArrow.png",
+  },
+  {
+    name: "DoubleArrow",
+    type: "line",
+    displayName: "Dowble Arrow",
+    image: "DoubleArrow.png",
   },
 ];
 

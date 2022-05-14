@@ -1,27 +1,24 @@
 import { VoidFunctionComponent } from "react";
-import { Circle as KonovaCircle, Layer } from "react-konva";
+import { Layer, Rect } from "react-konva";
 import composeRefs from "@seznam/compose-react-refs";
 
-import {
-  useAppDispatch,
-  useHover,
-  useSelect,
-  useTransformare,
-  useDrag,
-} from "../../../hooks";
+import { useHover, useSelect, useTransformare, useDrag } from "../../../hooks";
 import { ShapeObject, STROKE_WIDTH } from "../..";
 
-export type CircleProps = ShapeObject & {
-  name: "Circle";
+export type RoundedRectangleProps = ShapeObject & {
+  name: "RoundedRectangle";
 };
 
-export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
+export const RoundedRectangle: VoidFunctionComponent<RoundedRectangleProps> = (
+  props
+) => {
   const {
     id,
     x = 0,
     y = 0,
     scaleX = 1,
     scaleY = 1,
+    rotation = 0,
     fillColor = "white",
     strokeColor = "black",
   } = props;
@@ -33,15 +30,18 @@ export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
 
   return (
     <Layer>
-      <KonovaCircle
+      <Rect
         id={id}
         // @ts-ignore
-        ref={composeRefs(shapeRef, hoverRef)}
+        ref={composeRefs(hoverRef, shapeRef)}
         x={x}
         y={y}
+        width={100}
+        height={50}
         scaleX={scaleX}
         scaleY={scaleY}
-        radius={25}
+        rotation={rotation}
+        cornerRadius={8}
         fill={fillColor}
         stroke={strokeColor}
         strokeWidth={STROKE_WIDTH}
@@ -51,14 +51,9 @@ export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
         onDragEnd={onDragEnd}
         onTransformEnd={onTransformEnd}
       />
-      <Transformer
-        enabledAnchors={[
-          "top-left",
-          "top-right",
-          "bottom-left",
-          "bottom-right",
-        ]}
-      />
+      <Transformer />
     </Layer>
   );
 };
+
+export default RoundedRectangle;

@@ -1,35 +1,30 @@
-import { useRef, VoidFunctionComponent } from "react";
-import { Line as KonvaLine, Layer, Rect, Group } from "react-konva";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Konva from "konva";
+import { Rect } from "react-konva";
 import { KonvaEventObject } from "konva/lib/Node";
-import composeRefs from "@seznam/compose-react-refs";
 
-import { useHover, useSelect, useAppDispatch } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from ".";
 import {
-  LineObject,
-  STROKE_WIDTH,
   ANCHOR_SIZE,
   ANCHOR_STROKE,
   DEFAULT_LINE_POINTS,
-} from "../..";
-import { actions } from "../../../store";
+  LineObject,
+} from "../components";
+import { actions } from "../store";
 
-export type LineProps = LineObject & {
-  name: "Line";
-};
-
-export const Line: VoidFunctionComponent<LineProps> = (props) => {
-  const { id, points = DEFAULT_LINE_POINTS } = props;
-
-  const dispatch = useAppDispatch();
+export const useLine = (object: LineObject) => {
+  const { id, points = DEFAULT_LINE_POINTS, fillColor = "black" } = object;
 
   const layerRef = useRef<Konva.Layer>(null);
   const lineRef = useRef<Konva.Line>(null);
   const anchorRef1 = useRef<Konva.Rect>(null);
   const anchorRef2 = useRef<Konva.Rect>(null);
 
-  const { ref: hoverRef } = useHover();
-  const { onSelect, selected } = useSelect(id);
+  const { selectedShapeId } = useAppSelector((state) => state.shape);
+
+  const [selected, setSelected] = useState(id === selectedShapeId);
+
+  const dispatch = useAppDispatch();
 
   const updateLine = (e: KonvaEventObject<DragEvent>) => {
     if (
@@ -53,7 +48,8 @@ export const Line: VoidFunctionComponent<LineProps> = (props) => {
     if (anchorRef1.current && anchorRef2.current) {
       dispatch(
         actions.change({
-          ...props,
+          ...object,
+          type: "line",
           points: [
             anchorRef1.current.x() + ANCHOR_SIZE / 2,
             anchorRef1.current.y() + ANCHOR_SIZE / 2,
@@ -65,20 +61,10 @@ export const Line: VoidFunctionComponent<LineProps> = (props) => {
     }
   };
 
-  return (
-    <Layer ref={layerRef}>
-      <Group draggable={true} onDragEnd={onDragEnd}>
-        <KonvaLine
-          // @ts-ignore
-          ref={composeRefs(hoverRef, lineRef)}
-          points={points}
-          stroke={selected ? ANCHOR_STROKE : "black"}
-          strokeWidth={STROKE_WIDTH}
-          hitStrokeWidth={5}
-          onClick={onSelect}
-          onTap={onSelect}
-        />
-        {selected && (
+  const Transformer = useMemo(() => {
+    const LineTransformerComponent = () => {
+      return selected ? (
+        <>
           <>
             <Rect
               ref={anchorRef1}
@@ -107,8 +93,21 @@ export const Line: VoidFunctionComponent<LineProps> = (props) => {
               onDragEnd={onDragEnd}
             />
           </>
-        )}
-      </Group>
-    </Layer>
-  );
+        </>
+      ) : null;
+    };
+    return LineTransformerComponent;
+  }, [selected, points]);
+
+  useEffect(() => {
+    setSelected(id === selectedShapeId);
+  }, [id, selectedShapeId]);
+
+  useEffect(() => {
+    if (lineRef.current) {
+      lineRef.current.stroke(selected ? ANCHOR_STROKE : fillColor);
+    }
+  }, [lineRef.current, selected]);
+
+  return { layerRef, lineRef, Transformer, onDragEnd };
 };
