@@ -2,7 +2,7 @@ import { VoidFunctionComponent } from "react";
 import { Ellipse as KonovaEllipse, Layer } from "react-konva";
 import composeRefs from "@seznam/compose-react-refs";
 
-import { useHover, useSelect, useTransformare, useDrag } from "../../../hooks";
+import { useHover, useSelect, useShape } from "../../../hooks";
 import { ShapeObject, STROKE_WIDTH } from "../..";
 
 export type EllipseProps = ShapeObject & {
@@ -22,8 +22,7 @@ export const Ellipse: VoidFunctionComponent<EllipseProps> = (props) => {
 
   const { ref: hoverRef } = useHover();
   const { onSelect } = useSelect(id);
-  const { onDragEnd } = useDrag(props);
-  const { ref: shapeRef, Transformer, onTransformEnd } = useTransformare(props);
+  const { shapeRef, Transformer, onTransformEnd, onDragEnd } = useShape(props);
 
   return (
     <Layer>

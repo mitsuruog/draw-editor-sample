@@ -2,7 +2,7 @@ import { VoidFunctionComponent } from "react";
 import { Text as KonvaText } from "react-konva";
 import composeRefs from "@seznam/compose-react-refs";
 
-import { useHover, useSelect, useTransformare, useDrag } from "../../../hooks";
+import { useHover, useSelect, useShape } from "../../../hooks";
 import { TextObject } from "../..";
 
 export type TextProps = TextObject & {
@@ -23,8 +23,7 @@ const Text: VoidFunctionComponent<TextProps> = (props) => {
 
   const { ref: hoverRef } = useHover();
   const { onSelect } = useSelect(id);
-  const { onDragEnd } = useDrag(props);
-  const { ref: shapeRef, Transformer, onTransformEnd } = useTransformare(props);
+  const { shapeRef, Transformer, onTransformEnd, onDragEnd } = useShape(props);
 
   return (
     <>

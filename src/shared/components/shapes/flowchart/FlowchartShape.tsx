@@ -4,7 +4,7 @@ import { generate } from "shortid";
 import composeRefs from "@seznam/compose-react-refs";
 
 import { ShapeObject, STROKE_WIDTH } from "..";
-import { useSelect, useHover, useTransformare, useDrag } from "../../../hooks";
+import { useSelect, useHover, useShape } from "../../../hooks";
 
 export type FlowchartShapeName =
   | "flowchart__card"
@@ -255,9 +255,8 @@ export const FlowchartShape: VoidFunctionComponent<FlowchartShapeProps> = (
   } = props;
 
   const { ref: hoverRef } = useHover();
-  const { onDragEnd } = useDrag(props);
   const { onSelect } = useSelect(id);
-  const { ref: shapeRef, Transformer, onTransformEnd } = useTransformare(props);
+  const { shapeRef, Transformer, onTransformEnd, onDragEnd } = useShape(props);
 
   const shape = FlowchartShapes.find((item) => item.name === name);
 

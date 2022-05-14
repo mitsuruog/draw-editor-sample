@@ -15,6 +15,8 @@ import { actions } from "../store";
 export const useLine = (object: LineObject) => {
   const { id, points = DEFAULT_LINE_POINTS, fillColor = "black" } = object;
 
+  const dispatch = useAppDispatch();
+
   const layerRef = useRef<Konva.Layer>(null);
   const lineRef = useRef<Konva.Line>(null);
   const anchorRef1 = useRef<Konva.Rect>(null);
@@ -23,8 +25,6 @@ export const useLine = (object: LineObject) => {
   const { selectedShapeId } = useAppSelector((state) => state.shape);
 
   const [selected, setSelected] = useState(id === selectedShapeId);
-
-  const dispatch = useAppDispatch();
 
   const updateLine = (e: KonvaEventObject<DragEvent>) => {
     if (

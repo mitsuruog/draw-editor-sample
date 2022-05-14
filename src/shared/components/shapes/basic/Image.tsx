@@ -3,7 +3,7 @@ import { Image as KonvaImage, Layer } from "react-konva";
 import useImage from "use-image";
 import composeRefs from "@seznam/compose-react-refs";
 
-import { useHover, useSelect, useTransformare, useDrag } from "../../../hooks";
+import { useHover, useSelect, useShape } from "../../../hooks";
 import { ImageObject } from "../..";
 
 export type ImageProps = ImageObject & {
@@ -25,8 +25,7 @@ export const Image: VoidFunctionComponent<ImageProps> = (props) => {
 
   const { ref: hoverRef } = useHover();
   const { onSelect } = useSelect(id);
-  const { onDragEnd } = useDrag(props);
-  const { ref: shapeRef, Transformer, onTransformEnd } = useTransformare(props);
+  const { shapeRef, Transformer, onTransformEnd, onDragEnd } = useShape(props);
 
   return (
     <Layer>

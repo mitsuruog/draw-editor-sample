@@ -2,13 +2,7 @@ import { VoidFunctionComponent } from "react";
 import { Circle as KonovaCircle, Layer } from "react-konva";
 import composeRefs from "@seznam/compose-react-refs";
 
-import {
-  useAppDispatch,
-  useHover,
-  useSelect,
-  useTransformare,
-  useDrag,
-} from "../../../hooks";
+import { useHover, useSelect, useShape } from "../../../hooks";
 import { ShapeObject, STROKE_WIDTH } from "../..";
 
 export type CircleProps = ShapeObject & {
@@ -28,8 +22,7 @@ export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
 
   const { ref: hoverRef } = useHover();
   const { onSelect } = useSelect(id);
-  const { onDragEnd } = useDrag(props);
-  const { ref: shapeRef, Transformer, onTransformEnd } = useTransformare(props);
+  const { shapeRef, Transformer, onTransformEnd, onDragEnd } = useShape(props);
 
   return (
     <Layer>
