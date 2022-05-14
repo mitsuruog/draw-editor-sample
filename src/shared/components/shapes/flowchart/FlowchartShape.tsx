@@ -283,6 +283,7 @@ export const FlowchartShape: VoidFunctionComponent<FlowchartShapeProps> = (
             fill={fillColor}
             stroke={strokeColor}
             strokeWidth={STROKE_WIDTH}
+            strokeScaleEnabled={false}
           />
         ))}
       </Group>

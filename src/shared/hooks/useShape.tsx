@@ -31,6 +31,7 @@ export const useShape = (object: DrawObject) => {
         <KonvaTransformer
           ref={transformerRef}
           {...props}
+          rotationSnaps={[0, 90, 180, 270]}
           ignoreStroke={true}
           boundBoxFunc={(oldBox, newBox) => {
             // limit resize

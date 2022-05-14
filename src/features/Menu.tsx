@@ -3,12 +3,13 @@ import { FlowchartShapeName } from "../shared/components/shapes/flowchart";
 import { useAppDispatch } from "../shared/hooks";
 import { actions } from "../shared/store";
 import { BasicShapeProps } from "../shared/components/shapes/basic";
+import { DrawObject } from "../shared/components";
 
 type MenuProps = {};
 
 const basicShapes: {
   name: string;
-  type: string;
+  type: DrawObject["type"];
   displayName?: string;
   image: string;
 }[] = [
@@ -71,6 +72,12 @@ const basicShapes: {
     type: "line",
     displayName: "Dowble Arrow",
     image: "DoubleArrow.png",
+  },
+  {
+    name: "Text",
+    type: "text",
+    displayName: "Text",
+    image: "Text.png",
   },
 ];
 
@@ -204,8 +211,8 @@ const flowchatItems: {
 export const Menu: VoidFunctionComponent<MenuProps> = (props) => {
   const dispatch = useAppDispatch();
 
-  const onClickMenu = (name: FlowchartShapeName) => {
-    dispatch(actions.add({ name, type: "shape" }));
+  const onClickMenu = (name: FlowchartShapeName, type: DrawObject["type"]) => {
+    dispatch(actions.add({ name, type }));
   };
 
   return (
@@ -218,7 +225,7 @@ export const Menu: VoidFunctionComponent<MenuProps> = (props) => {
             className="w-8 h-6 flex justify-center items-center"
             title={shape.displayName}
             // @ts-ignore
-            onClick={() => onClickMenu(shape.name)}
+            onClick={() => onClickMenu(shape.name, shape.type)}
           >
             <img
               src={`images/${shape.image}`}
@@ -234,7 +241,7 @@ export const Menu: VoidFunctionComponent<MenuProps> = (props) => {
             key={item.name}
             className="w-8 h-6 flex justify-center items-center"
             title={item.displayName}
-            onClick={() => onClickMenu(item.name)}
+            onClick={() => onClickMenu(item.name, "shape")}
           >
             <img
               src={`images/flowchart/${item.image}`}

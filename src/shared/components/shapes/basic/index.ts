@@ -9,7 +9,7 @@ import { RoundedRectangle, RoundedRectangleProps } from "./RoundedRectangle";
 import { Line, LineProps } from "./Line";
 import { DashedLine, DashedLineProps } from "./DashedLine";
 import { DottedLine, DottedLineProps } from "./DottedLine";
-//export * from "./Text";
+import { Text, TextProps } from "./Text";
 
 export type BasicShapeProps =
   | ArrowProps
@@ -22,7 +22,8 @@ export type BasicShapeProps =
   | RoundedRectangleProps
   | LineProps
   | DashedLineProps
-  | DottedLineProps;
+  | DottedLineProps
+  | TextProps;
 
 export const BasicShape = {
   Arrow,
@@ -36,4 +37,5 @@ export const BasicShape = {
   DottedLine,
   RoundedRectangle,
   Ellipse,
+  Text,
 };

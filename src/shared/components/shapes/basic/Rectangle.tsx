@@ -10,16 +10,7 @@ export type RectangleProps = ShapeObject & {
 };
 
 export const Rectangle: VoidFunctionComponent<RectangleProps> = (props) => {
-  const {
-    id,
-    x = 0,
-    y = 0,
-    scaleX = 1,
-    scaleY = 1,
-    rotation = 0,
-    fillColor = "white",
-    strokeColor = "black",
-  } = props;
+  const { id, x, y, rotation, scaleX, scaleY, fillColor, strokeColor } = props;
 
   const { ref: hoverRef } = useHover();
   const { onSelect } = useSelect(id);
@@ -41,6 +32,7 @@ export const Rectangle: VoidFunctionComponent<RectangleProps> = (props) => {
         fill={fillColor}
         stroke={strokeColor}
         strokeWidth={STROKE_WIDTH}
+        strokeScaleEnabled={false}
         draggable={true}
         onClick={onSelect}
         onTap={onSelect}
@@ -50,6 +42,16 @@ export const Rectangle: VoidFunctionComponent<RectangleProps> = (props) => {
       <Transformer />
     </Layer>
   );
+};
+
+Rectangle.defaultProps = {
+  x: 50,
+  y: 50,
+  scaleX: 1,
+  scaleY: 1,
+  rotation: 0,
+  fillColor: "white",
+  strokeColor: "black",
 };
 
 export default Rectangle;

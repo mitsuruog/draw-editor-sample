@@ -44,6 +44,7 @@ export const RoundedRectangle: VoidFunctionComponent<RoundedRectangleProps> = (
         fill={fillColor}
         stroke={strokeColor}
         strokeWidth={STROKE_WIDTH}
+        strokeScaleEnabled={false}
         draggable={true}
         onClick={onSelect}
         onTap={onSelect}
