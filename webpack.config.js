@@ -15,6 +15,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
       { test: /\.tsx?$/, loader: "ts-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
@@ -59,5 +63,6 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: __dirname + "/dist",
+    publicPath: "auto",
   },
 };

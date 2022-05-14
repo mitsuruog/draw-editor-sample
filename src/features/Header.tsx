@@ -3,10 +3,9 @@ import { VoidFunctionComponent } from "react";
 type HeaderProps = {};
 
 export const Header: VoidFunctionComponent<HeaderProps> = (props) => {
-  console.log("hi");
   return (
     <nav
-      className="w-screen flex justify-between bg-slate-100 px-4 items-center border-b"
+      className="w-screen flex justify-between shrink-0 bg-slate-100 px-4 items-center border-b"
       style={{ height: "3rem" }}
     >
       <div className="flex items-center gap-4">
@@ -16,15 +15,7 @@ export const Header: VoidFunctionComponent<HeaderProps> = (props) => {
         <p>Draw Editor</p>
       </div>
       <div>
-        <div
-          className="bg-lime-500 hover:bg-lime-700 text-white py-1 px-4 rounded"
-          onClick={() => {
-            console.log("Submit");
-          }}
-          onMouseEnter={() => {
-            console.log("Hover");
-          }}
-        >
+        <div className="bg-lime-500 hover:bg-lime-700 text-white py-1 px-4 rounded">
           Submit
         </div>
       </div>

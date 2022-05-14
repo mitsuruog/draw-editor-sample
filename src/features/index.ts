@@ -1,5 +1,5 @@
 export * from "./App";
-export * from "./DrawEditor";
 export * from "./Header";
 export * from "./SideMenu";
 export * from "./Main";
+export * from "./Menu";
