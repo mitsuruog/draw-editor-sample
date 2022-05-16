@@ -1,5 +1,5 @@
 import { VoidFunctionComponent } from "react";
-import { Circle as KonovaCircle, Layer } from "react-konva";
+import { Circle as KonovaCircle } from "react-konva";
 import composeRefs from "@seznam/compose-react-refs";
 
 import { useHover, useSelect, useShape } from "../../../hooks";
@@ -25,7 +25,7 @@ export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
   const { shapeRef, Transformer, onTransformEnd, onDragEnd } = useShape(props);
 
   return (
-    <Layer>
+    <>
       <KonovaCircle
         id={id}
         // @ts-ignore
@@ -53,6 +53,6 @@ export const Circle: VoidFunctionComponent<CircleProps> = (props) => {
           "bottom-right",
         ]}
       />
-    </Layer>
+    </>
   );
 };

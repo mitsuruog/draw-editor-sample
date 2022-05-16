@@ -7,7 +7,7 @@ import {
   useRef,
 } from "react";
 import Konva from "konva";
-import { Text as KonvaText, Layer, Group } from "react-konva";
+import { Text as KonvaText, Group } from "react-konva";
 import { Html } from "react-konva-utils";
 import composeRefs from "@seznam/compose-react-refs";
 
@@ -87,7 +87,7 @@ export const Text: VoidFunctionComponent<TextProps> = (props) => {
   });
 
   return (
-    <Layer>
+    <>
       <Group
         ref={groupRef}
         draggable={true}
@@ -127,6 +127,6 @@ export const Text: VoidFunctionComponent<TextProps> = (props) => {
         enabledAnchors={["middle-left", "middle-right"]}
         visible={!editorEnabled}
       />
-    </Layer>
+    </>
   );
 };

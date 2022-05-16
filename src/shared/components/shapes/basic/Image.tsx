@@ -1,5 +1,5 @@
 import { VoidFunctionComponent } from "react";
-import { Image as KonvaImage, Layer } from "react-konva";
+import { Image as KonvaImage } from "react-konva";
 import useImage from "use-image";
 import composeRefs from "@seznam/compose-react-refs";
 
@@ -28,7 +28,7 @@ export const Image: VoidFunctionComponent<ImageProps> = (props) => {
   const { shapeRef, Transformer, onTransformEnd, onDragEnd } = useShape(props);
 
   return (
-    <Layer>
+    <>
       <KonvaImage
         id={id}
         // @ts-ignore
@@ -53,6 +53,6 @@ export const Image: VoidFunctionComponent<ImageProps> = (props) => {
           "bottom-right",
         ]}
       />
-    </Layer>
+    </>
   );
 };

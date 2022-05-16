@@ -17,7 +17,7 @@ export const useLine = (object: LineObject) => {
 
   const dispatch = useAppDispatch();
 
-  const layerRef = useRef<Konva.Layer>(null);
+  const groupRef = useRef<Konva.Group>(null);
   const lineRef = useRef<Konva.Line>(null);
   const anchorRef1 = useRef<Konva.Rect>(null);
   const anchorRef2 = useRef<Konva.Rect>(null);
@@ -31,7 +31,7 @@ export const useLine = (object: LineObject) => {
       anchorRef1.current &&
       anchorRef2.current &&
       lineRef.current &&
-      layerRef.current
+      groupRef.current
     ) {
       const newPoints = [
         anchorRef1.current.x() + ANCHOR_SIZE / 2,
@@ -40,7 +40,7 @@ export const useLine = (object: LineObject) => {
         anchorRef2.current.y() + ANCHOR_SIZE / 2,
       ];
       lineRef.current.points(newPoints);
-      layerRef.current.batchDraw();
+      groupRef.current.getLayer()?.batchDraw();
     }
   };
 
@@ -109,5 +109,5 @@ export const useLine = (object: LineObject) => {
     }
   }, [lineRef.current, selected]);
 
-  return { layerRef, lineRef, Transformer, onDragEnd };
+  return { groupRef, lineRef, Transformer, onDragEnd };
 };

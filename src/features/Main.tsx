@@ -1,6 +1,6 @@
 import { VoidFunctionComponent, useEffect } from "react";
 import { ReactReduxContext, Provider } from "react-redux";
-import { Stage } from "react-konva";
+import { Stage, Layer } from "react-konva";
 import { KonvaEventObject } from "konva/lib/Node";
 
 import { Shapes } from "../shared/components";
@@ -54,25 +54,27 @@ export const Main: VoidFunctionComponent<MainProps> = (props) => {
             className="bg-white"
           >
             <Provider store={store}>
-              {shapes.map(({ id, name, ...shapeProps }) => {
-                // @ts-ignore TODO
-                const ShapeName = Shapes[name] as string;
-                if (name.startsWith("flowchart")) {
-                  return (
-                    <FlowchartShape
-                      key={id}
-                      id={id}
-                      // @ts-ignore
-                      name={name}
-                      {...shapeProps}
-                    />
-                  );
-                } else {
-                  return (
-                    <ShapeName key={id} {...{ id, name, ...shapeProps }} />
-                  );
-                }
-              })}
+              <Layer>
+                {shapes.map(({ id, name, ...shapeProps }) => {
+                  // @ts-ignore TODO
+                  const ShapeName = Shapes[name] as string;
+                  if (name.startsWith("flowchart")) {
+                    return (
+                      <FlowchartShape
+                        key={id}
+                        id={id}
+                        // @ts-ignore
+                        name={name}
+                        {...shapeProps}
+                      />
+                    );
+                  } else {
+                    return (
+                      <ShapeName key={id} {...{ id, name, ...shapeProps }} />
+                    );
+                  }
+                })}
+              </Layer>
             </Provider>
           </Stage>
         )}

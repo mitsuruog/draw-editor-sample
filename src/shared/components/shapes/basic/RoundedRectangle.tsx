@@ -1,5 +1,5 @@
 import { VoidFunctionComponent } from "react";
-import { Layer, Rect } from "react-konva";
+import { Rect } from "react-konva";
 import composeRefs from "@seznam/compose-react-refs";
 
 import { useHover, useSelect, useShape } from "../../../hooks";
@@ -28,7 +28,7 @@ export const RoundedRectangle: VoidFunctionComponent<RoundedRectangleProps> = (
   const { shapeRef, Transformer, onTransformEnd, onDragEnd } = useShape(props);
 
   return (
-    <Layer>
+    <>
       <Rect
         id={id}
         // @ts-ignore
@@ -52,7 +52,7 @@ export const RoundedRectangle: VoidFunctionComponent<RoundedRectangleProps> = (
         onTransformEnd={onTransformEnd}
       />
       <Transformer />
-    </Layer>
+    </>
   );
 };
 
